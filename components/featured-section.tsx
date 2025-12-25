@@ -26,7 +26,7 @@ export default function FeaturedSection(){
                 <h1 className="text-2xl font-bold">Featured Courses</h1>
                 <div className="grid grid-cols-3 px-15 py-10 space-x-10 space-y-10">
                     {featuredCourses?.map((item, index) => (
-                        <div key={index}><CourseCard courseInfo={item} /></div>
+                        <div key={index} className="w-90 h-90"><CourseCard courseInfo={item} /></div>
                     ))}
                 </div>
             </main>

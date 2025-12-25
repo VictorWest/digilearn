@@ -3,12 +3,13 @@ import { Course } from "@/utils/data";
 import Image from "next/image";
 import { PiChalkboardTeacherThin } from "react-icons/pi";
 import { CiStar } from "react-icons/ci";
+import Button from "./button";
 
-export default function CourseCard({ courseInfo }: { courseInfo: Course }){
-    const { imageUrl, title, tutor, price, rating } = courseInfo
+export default function CourseCard({ courseInfo, main }: { courseInfo: Course, main?: boolean }){
+    const { imageUrl, title, tutor, price, rating, reviews } = courseInfo
 
     return (
-        <div className="rounded-md shadow-xl border border-stone-300 w-90 h-90 cursor-pointer hover:scale-102">
+        <div className="relative rounded-md shadow-xl border border-stone-300 h-100 cursor-pointer hover:scale-102">
             <div className="relative aspect-video w-full">
                 <Image className="rounded-t-md object-cover" src={`${imageUrl}`} fill alt={title + ": " + tutor} />
                 <p style={{ background: THEME_COLOUR }} className={`absolute top-2 right-2 rounded-md text-xs font-semibold p-1 text-white`}>{price == 0 ? "Free" : `$${price}`}</p>
@@ -19,13 +20,13 @@ export default function CourseCard({ courseInfo }: { courseInfo: Course }){
                     <PiChalkboardTeacherThin />
                     <p>{tutor}</p>
                 </div>
-                <div className="flex items-center">
-                    {[...Array(5)].map(() => {
-                        return <CiStar className="text-amber-600" />
-                    })}
-                    <p className="ml-1 text-xs">({rating})</p>
+                <div className="flex items-center space-x-1 text-xs">
+                    <CiStar className="text-amber-600" />
+                    <p>{rating}</p>
+                    <p>({reviews} reviews)</p>
                 </div>
             </div>
+            {main && <div className="w-full px-5 absolute bottom-10"><Button text="View Course" colour="white" /></div>}
         </div>
     )
 }
