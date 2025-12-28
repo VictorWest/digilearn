@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 
 import "./globals.css";
 import { CourseProvider } from "@/context/CourseContext";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +37,9 @@ export default function RootLayout({
         className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CourseProvider>
-          {children}
+          <Header />
+           {children}
+          <Footer />
         </CourseProvider>
       </body>
     </html>

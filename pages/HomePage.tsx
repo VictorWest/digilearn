@@ -7,11 +7,11 @@ import WhyChoose from "@/components/why-choose";
 export default function HomePage(){
     return (
         <>
-            <Header />
+            {/* <Header /> */}
             <Hero />
             <FeaturedSection />
             <WhyChoose />
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }

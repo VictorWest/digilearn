@@ -7,7 +7,7 @@ import CourseCard from "./course-card";
 import { useCourseContext } from "@/context/CourseContext";
 
 export default function MainFeaturedCourses(){
-    const { featuredCourses } = useCourseContext()
+    const { filteredCourses } = useCourseContext()
 
     return(
         <div className="m-5 mt-7 space-y-5">
@@ -25,7 +25,7 @@ export default function MainFeaturedCourses(){
                 <div className="text-sm">View All</div>
             </div>
             <div className="grid grid-cols-3 space-x-10 space-y-10">
-                {featuredCourses?.map((item: any, index: any) => (
+                {filteredCourses?.map((item: any, index: any) => (
                     <div key={index} className="w-70"><CourseCard courseInfo={item} main /></div>
                 ))}
             </div>
