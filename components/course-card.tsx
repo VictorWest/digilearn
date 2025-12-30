@@ -1,12 +1,13 @@
-import { THEME_COLOUR } from "@/shared/constants";
+import { COURSE_DETAIL_ROUTE, THEME_COLOUR } from "@/shared/constants";
 import { Course } from "@/utils/data";
 import Image from "next/image";
 import { PiChalkboardTeacherThin } from "react-icons/pi";
 import { CiStar } from "react-icons/ci";
 import Button from "./button";
+import Link from "next/link";
 
 export default function CourseCard({ courseInfo, main }: { courseInfo: Course, main?: boolean }){
-    const { imageUrl, title, tutor, price, rating, reviews } = courseInfo
+    const { imageUrl, title, tutor, price, rating, reviews, courseId } = courseInfo
 
     return (
         <div className="relative rounded-md shadow-xl border border-stone-300 h-100 cursor-pointer hover:scale-102">
@@ -26,7 +27,7 @@ export default function CourseCard({ courseInfo, main }: { courseInfo: Course, m
                     <p>({reviews} reviews)</p>
                 </div>
             </div>
-            {main && <div className="w-full px-5 absolute bottom-10"><Button text="View Course" colour="white" /></div>}
+            {main && <Link href={`${COURSE_DETAIL_ROUTE}/${courseId}`} className="w-full px-5 absolute bottom-10"><Button text="View Course" colour="white" /></Link>}
         </div>
     )
 }

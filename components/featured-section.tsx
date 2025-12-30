@@ -6,10 +6,11 @@ import { Course, featuredCoursesArray } from "@/utils/data";
 import CourseCard from "./course-card";
 
 export default function FeaturedSection(){
-    const [ featuredCourses, setFeaturedCourses ] = useState<Course[]>()
+    const [ featuredCourses, setFeaturedCourses ] = useState<Course[]>([])
 
-    useEffect(() => {
-        setFeaturedCourses(featuredCoursesArray)
+    useEffect(() => {        
+        const reviewFilter = featuredCoursesArray.sort((a, b) => b.reviews - a.reviews).filter((_, index) => index < 9)
+        setFeaturedCourses(reviewFilter)
     }, [])
 
     return(
@@ -24,7 +25,7 @@ export default function FeaturedSection(){
             </section>
             <main>
                 <h1 className="text-2xl font-bold">Featured Courses</h1>
-                <div className="grid grid-cols-3 px-15 py-10 space-x-10 space-y-10">
+                <div className="grid grid-cols-3 px-15 py-10 space-x-10 space-y-20">
                     {featuredCourses?.map((item, index) => (
                         <div key={index} className="w-90 h-90"><CourseCard courseInfo={item} /></div>
                     ))}
