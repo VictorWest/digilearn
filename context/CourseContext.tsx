@@ -1,5 +1,5 @@
 "use client"
-import { Course, featuredCoursesArray } from "@/utils/data";
+import { Course, CourseDetail, featuredCoursesArray } from "@/utils/data";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const CourseContext = createContext<any>(undefined)
@@ -10,6 +10,9 @@ export const CourseProvider = ({ children }: any) => {
     const [ selectedCategories, setSelectedCategories ] = useState<string[]>([])
     const [ selectedLevels, setSelectedLevels ] = useState<string[]>([])
     
+    const [ courseData, setCourseData ] = useState<CourseDetail>()
+    const [ currentModule, setCurrentModule ] = useState({ module: 0, lesson: 0 })
+
     useEffect(() => {
         setFeaturedCourses(featuredCoursesArray)
         setFilteredCourses(featuredCoursesArray)
@@ -29,7 +32,9 @@ export const CourseProvider = ({ children }: any) => {
                                         featuredCourses, setFeaturedCourses,
                                         filteredCourses, setFilteredCourses,
                                         selectedCategories, setSelectedCategories,
-                                        selectedLevels, setSelectedLevels
+                                        selectedLevels, setSelectedLevels,
+                                        courseData, setCourseData,
+                                        currentModule, setCurrentModule
                                     }}>
             { children }
         </CourseContext.Provider>

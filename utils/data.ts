@@ -22,22 +22,25 @@ export interface CourseDetail {
     },
     tutor: {
         name: string,
-        details: string,
-        occupation: string
+        details?: string,
+        occupation?: string,
+        profileSrc?: string
     },
     overview: {
         main: string,
         deliverables: string[]
     },
-    syllabus: {
-        moduleNumber: number,
-        moduleName: string,
-        totalHours: number,
-        lessons: {
-            title: string,
-            url: string
-        }[]
-    }[]
+    syllabus: CourseModule[]
+}
+
+export interface CourseModule {
+  moduleNumber: number,
+  moduleName: string,
+  totalHours: number,
+  lessons: {
+      title: string,
+      url: string
+  }[]
 }
 
 export const featuredCoursesArray: Course[] = [

@@ -1,6 +1,7 @@
 "use client"
-import { redirect } from "next/navigation";
+import Link from "next/link";
 import Button from "./button";
+import { COURSE_CATALOG_ROUTE } from "@/shared/constants";
 
 export default function Hero(){
     return(
@@ -11,7 +12,7 @@ export default function Hero(){
                     <h4 className="px-10 font-semibold mx-auto w-4/5">Access a world of knowledge with expert-led courses. Transform your career and life with our flexible online learning platform.</h4>
                 </div>
                 <div className="w-full flex justify-center gap-5 mt-5">
-                    <div onClick={() => redirect("/course-catalog")}><Button colour="white" text="Explore Courses" /></div>
+                    <Link href={COURSE_CATALOG_ROUTE}><Button colour="white" text="Explore Courses" /></Link>
                     <Button background="white" text="Sign Up for Free" />
                 </div>
             </div>

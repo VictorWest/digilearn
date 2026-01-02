@@ -5,6 +5,7 @@ import { PiChalkboardTeacherThin } from "react-icons/pi";
 import { CiStar } from "react-icons/ci";
 import Button from "./button";
 import Link from "next/link";
+import { IoIosAdd } from "react-icons/io";
 
 export default function CourseCard({ courseInfo, main }: { courseInfo: Course, main?: boolean }){
     const { imageUrl, title, tutor, price, rating, reviews, courseId } = courseInfo
@@ -27,7 +28,11 @@ export default function CourseCard({ courseInfo, main }: { courseInfo: Course, m
                     <p>({reviews} reviews)</p>
                 </div>
             </div>
-            {main && <Link href={`${COURSE_DETAIL_ROUTE}/${courseId}`} className="w-full px-5 absolute bottom-10"><Button text="View Course" colour="white" /></Link>}
+            {main &&
+                <div className="w-full px-5 absolute bottom-10"> 
+                    <Link href={`${COURSE_DETAIL_ROUTE}/${courseId}`}><Button text="View Course" colour="white" /></Link>
+                </div>
+            }
         </div>
     )
 }
