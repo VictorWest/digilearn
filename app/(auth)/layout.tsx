@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 
-import "./globals.css";
-import { CourseProvider } from "@/context/CourseContext";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +23,7 @@ export const metadata: Metadata = {
   description: "By Victor Wariboko-West",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,11 +34,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CourseProvider>
-          <Header />
            {children}
-          <Footer />
-        </CourseProvider>
       </body>
     </html>
   );

@@ -11,7 +11,7 @@ export default function CourseCard({ courseInfo, main }: { courseInfo: Course, m
     const { imageUrl, title, tutor, price, rating, reviews, courseId } = courseInfo
 
     return (
-        <div className="relative rounded-md shadow-xl border border-stone-300 h-100 cursor-pointer hover:scale-102">
+        <div className="relative rounded-md shadow-xl border border-stone-300 h-90 cursor-pointer hover:scale-102">
             <div className="relative aspect-video w-full">
                 <Image className="rounded-t-md object-cover" src={`${imageUrl}`} fill alt={title + ": " + tutor} />
                 <p style={{ background: THEME_COLOUR }} className={`absolute top-2 right-2 rounded-md text-xs font-semibold p-1 text-white`}>{price == 0 ? "Free" : `$${price}`}</p>
@@ -29,7 +29,7 @@ export default function CourseCard({ courseInfo, main }: { courseInfo: Course, m
                 </div>
             </div>
             {main &&
-                <div className="w-full px-5 absolute bottom-10"> 
+                <div className="w-full px-5 absolute bottom-5"> 
                     <Link href={`${COURSE_DETAIL_ROUTE}/${courseId}`}><Button text="View Course" colour="white" /></Link>
                 </div>
             }
