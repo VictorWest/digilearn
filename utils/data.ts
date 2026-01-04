@@ -1,47 +1,4 @@
-export interface Course {
-    courseId: string | number,
-    imageUrl: string,
-    price: number,
-    title: string,
-    tutor: string,
-    rating: number,
-    category: CourseCategory,
-    level: CourseLevel,
-    reviews: number 
-}
-
-export interface CourseDetail {
-    courseId: string | number,
-    title: string,
-    stat: {
-        rating: number,
-        reviews: number,
-        students: number,
-        totalHours: number,
-        numberOfLectures: number
-    },
-    tutor: {
-        name: string,
-        details?: string,
-        occupation?: string,
-        profileSrc?: string
-    },
-    overview: {
-        main: string,
-        deliverables: string[]
-    },
-    syllabus: CourseModule[]
-}
-
-export interface CourseModule {
-  moduleNumber: number,
-  moduleName: string,
-  totalHours: number,
-  lessons: {
-      title: string,
-      url: string
-  }[]
-}
+import { Course, CourseDetail } from "@/shared/interface"
 
 export const featuredCoursesArray: Course[] = [
   {
@@ -513,7 +470,5 @@ export const courseCategories = [
     "Machine Learning"
 ] as const
 
-export type CourseCategory = typeof courseCategories[number]
 
 export const courseLevels = ["Beginner", "Intermediate", "Advanced", "Expert"] as const
-export type CourseLevel = typeof courseLevels[number]

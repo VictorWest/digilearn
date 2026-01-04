@@ -1,5 +1,5 @@
 "use client"
-import { COURSE_CATALOG_ROUTE, HOME_ROUTE, LEARNER_DASHBOARD, THEME_COLOUR } from "@/shared/constants";
+import { COURSE_CATALOG_ROUTE, HOME_ROUTE, LEARNER_DASHBOARD, LOGIN_PAGE_ROUTE, REGISTER_PAGE_ROUTE, THEME_COLOUR } from "@/shared/constants";
 import Button from "./button";
 import FullLogo from "./full-logo";
 import Link from "next/link";
@@ -17,8 +17,8 @@ export default function Header(){
                 <Link href={LEARNER_DASHBOARD} style={{ color: (pathname?.includes(LEARNER_DASHBOARD)) ? THEME_COLOUR : "black"}}>Library</Link>
             </div>
             <div className="flex items-center gap-3">
-                <Button background="#fff" text="Log In" />
-                <Button text="Sign Up" colour="white" />
+                <Link href={LOGIN_PAGE_ROUTE}><Button background="#fff" text="Log In" /></Link>
+                <Link href={REGISTER_PAGE_ROUTE}><Button text="Sign Up" colour="white" /></Link>
             </div>
         </div>
     )
