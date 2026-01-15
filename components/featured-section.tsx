@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Button from "./button";
 import Input from "./input";
-import { Course, featuredCoursesArray } from "@/utils/data";
+import { Course, featuredCoursesArray } from "@/lib/utils/data";
 import CourseCard from "./course-card";
 
 export default function FeaturedSection(){

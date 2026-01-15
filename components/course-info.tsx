@@ -1,5 +1,5 @@
-import { THEME_COLOUR } from "@/shared/constants";
-import { CourseDetail } from "@/utils/data";
+import { THEME_COLOUR } from "@/lib/shared/constants";
+import { CourseDetail } from "@/lib/utils/data";
 import Image from "next/image";
 import { FaCheck } from "react-icons/fa";
 import StarRatings from "react-star-ratings"

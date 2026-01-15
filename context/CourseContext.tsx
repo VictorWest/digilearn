@@ -1,5 +1,5 @@
 "use client"
-import { Course, CourseDetail, featuredCoursesArray } from "@/utils/data";
+import { Course, CourseDetail, featuredCoursesArray } from "@/lib/utils/data";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const CourseContext = createContext<any>(undefined)

@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link";
 import Button from "./button";
-import { COURSE_CATALOG_ROUTE } from "@/shared/constants";
+import { COURSE_CATALOG_ROUTE } from "@/lib/shared/constants";
 
 export default function Hero(){
     return(

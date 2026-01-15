@@ -1,5 +1,6 @@
 import CatalogPage from "@/pages/CatalogPage";
 
-export default function Page(){
+export default async function Page(){
+
     return <CatalogPage />
 }

@@ -11,6 +11,3 @@ export const HOME_ROUTE = "/home"
 export const COURSE_CATALOG_ROUTE = "/courses/course-catalog"
 export const COURSE_DETAIL_ROUTE = "/courses/course-detail"
 export const LEARNER_DASHBOARD = "/learner-dashboard"
-
-export const BASE_BACKEND_ROUTE = "http://localhost:3000"
-export const BACKEND_REGISTER = `${BASE_BACKEND_ROUTE}/register`

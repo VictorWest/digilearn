@@ -1,5 +1,4 @@
-import { CourseDetail } from "@/utils/data";
-import { toYouTubeEmbed } from "@/utils/scripts";
+import { toYouTubeEmbed } from "@/lib/utils/scripts";
 import { Suspense } from "react";
 import { CiClock2 } from "react-icons/ci";
 import { PiChalkboardTeacherThin } from "react-icons/pi";
@@ -7,6 +6,7 @@ import { MdOutlinePlaylistPlay } from "react-icons/md";
 import StarRatings from "react-star-ratings";
 import Button from "./button";
 import { IoIosAdd } from "react-icons/io";
+import { CourseDetail } from "@/lib/shared/interface";
 
 export default function VideoPlayer({ courseData, currentModule }: { courseData: CourseDetail | undefined, currentModule: any }){
     return (

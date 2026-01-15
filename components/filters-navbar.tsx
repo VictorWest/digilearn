@@ -1,5 +1,5 @@
 "use client"
-import { courseCategories, courseLevels } from "@/utils/data";
+import { courseCategories, courseLevels } from "@/lib/utils/data";
 import { useState } from "react"
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";

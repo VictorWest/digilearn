@@ -1,4 +1,4 @@
-import { CourseDetail } from "@/utils/data";
+import { CourseDetail } from "@/lib/utils/data";
 import CourseModule from "./course-module";
 
 export default function CourseSyllabus({ courseData }: {courseData: CourseDetail | undefined }){

@@ -4,7 +4,6 @@ export interface User {
     userId: string,
     fullName: string,
     login: LoginUser,
-    confirmPassword: string
 }
 
 export interface LoginUser {

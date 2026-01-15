@@ -3,7 +3,7 @@ import CourseInfo from "@/components/course-info"
 import CourseSyllabus from "@/components/course-syllabus"
 import VideoPlayer from "@/components/video-player"
 import { useCourseContext } from "@/context/CourseContext"
-import { courseDetails } from "@/utils/data"
+import { courseDetails } from "@/lib/utils/data"
 import { redirect } from "next/navigation"
 import { useEffect } from "react"
 

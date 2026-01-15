@@ -1,5 +1,5 @@
 "use client"
-import { THEME_COLOUR } from "@/shared/constants";
+import { THEME_COLOUR } from "@/lib/shared/constants";
 import Button from "./button";
 import Input from "./input";
 import { IoBookOutline } from "react-icons/io5";

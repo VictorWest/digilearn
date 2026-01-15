@@ -1,5 +1,5 @@
-import { COURSE_DETAIL_ROUTE, THEME_COLOUR } from "@/shared/constants";
-import { Course } from "@/utils/data";
+import { COURSE_DETAIL_ROUTE, THEME_COLOUR } from "@/lib/shared/constants";
+import { Course } from "@/lib/utils/data";
 import Image from "next/image";
 import { PiChalkboardTeacherThin } from "react-icons/pi";
 import { CiStar } from "react-icons/ci";

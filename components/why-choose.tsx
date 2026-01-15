@@ -3,9 +3,9 @@ import { IoBookOutline } from "react-icons/io5";
 import { MdPeople } from "react-icons/md";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { RiDoubleQuotesL } from "react-icons/ri";
-import { THEME_COLOUR } from "@/shared/constants";
+import { THEME_COLOUR } from "@/lib/shared/constants";
 import ChooseCard from "./choose-card";
-import { mainReview } from "@/utils/data";
+import { mainReview } from "@/lib/utils/data";
 import Button from "./button";
 
 export default function WhyChoose(){

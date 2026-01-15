@@ -1,4 +1,4 @@
-import { Course, CourseDetail } from "@/shared/interface"
+import { Course, CourseDetail } from "@/lib/shared/interface"
 
 export const featuredCoursesArray: Course[] = [
   {

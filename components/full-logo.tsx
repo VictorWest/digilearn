@@ -1,5 +1,5 @@
 "use client"
-import { THEME_COLOUR } from "@/shared/constants";
+import { THEME_COLOUR } from "@/lib/shared/constants";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 

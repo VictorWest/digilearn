@@ -1,8 +1,8 @@
 "use client"
 import Button from "@/components/button"
 import CourseCard from "@/components/course-card"
-import { COURSE_CATALOG_ROUTE } from "@/shared/constants"
-import { Course, featuredCoursesArray } from "@/utils/data"
+import { COURSE_CATALOG_ROUTE } from "@/lib/shared/constants"
+import { Course, featuredCoursesArray } from "@/lib/utils/data"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 

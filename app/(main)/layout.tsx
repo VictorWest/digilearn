@@ -5,6 +5,8 @@ import "../globals.css";
 import { CourseProvider } from "@/context/CourseContext";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import Providers from "../providers";
+import { getServerSession } from "next-auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,21 +29,25 @@ export const metadata: Metadata = {
 };
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession()
+  
   return (
     <html lang="en">
       <body
         className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CourseProvider>
-          <Header />
-           {children}
-          <Footer />
-        </CourseProvider>
+        <Providers>
+          <CourseProvider>
+            <Header session={session} />
+            {children}
+            <Footer />
+          </CourseProvider>
+        </Providers>
       </body>
     </html>
   );

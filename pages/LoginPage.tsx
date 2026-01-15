@@ -5,43 +5,67 @@ import Image from "next/image";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
-import { EMAIL_REGEX, PASSWORD_REGEX, LOGIN_PAGE_ROUTE, REGISTER_PAGE_ROUTE, THEME_COLOUR, BACKEND_REGISTER } from "@/shared/constants";
-import { useState } from "react";
-import { LoginUser, User } from "@/shared/interface";
+import { EMAIL_REGEX, PASSWORD_REGEX, LOGIN_PAGE_ROUTE, REGISTER_PAGE_ROUTE, THEME_COLOUR, LEARNER_DASHBOARD } from "@/lib/shared/constants";
+import { useEffect, useState } from "react";
+import { User } from "@/lib/shared/interface";
+import { generateUUID } from "@/lib/utils/scripts";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useMutation } from "@tanstack/react-query"
+import { createUserRequest } from "@/lib/utils/http";
+import { ClipLoader } from "react-spinners";
+import { signIn } from "next-auth/react"
+import { useRouter } from "next/navigation";
 
 export default function LoginPage({ register }: { register?: boolean }){
-    const [ userData, setUserData ] = useState<User>() // for register
-    const [ loginData, setLoginData ] = useState<LoginUser>() // for login
+    const router = useRouter()
 
+    const [ userData, setUserData ] = useState<User>(
+        { userId: "", 
+            fullName: "Victor West", 
+            login: { email: "mywondervic@gmail.com", password: "mywonderviC123$" } }) // for register
+    const [ confirmPassword, setConfirmPassword ] = useState("mywonderviC123$")
+
+    const [ showPassword, setShowPassword ] = useState({ password: false, confirmPassword: false })
     const [ error, setError ] = useState("")
+
+    const { mutate, isPending, isError, error: mutateError } = useMutation({
+        mutationFn: createUserRequest
+    })
+
+    useEffect(() => {
+        if (isError){
+            setError(mutateError?.message || "There was an error, please try again.")
+        }
+    }, [isError])
 
     const handleRegister = async () => {
         if (!EMAIL_REGEX.test(userData?.login.email || "")){
             setError("Please give a valid email")
         } else if (!PASSWORD_REGEX.test(userData?.login.password || "")){
             setError("Password must have min 8 chars, 1 number, 1 lowercase, 1 uppercase, 1 special character")
-        } else if (userData?.login.password !== userData?.confirmPassword){
+        } else if (userData?.login.password !== confirmPassword){
             setError("Your passwords should be consistent")
         } else if (userData?.fullName == ""){
             setError("Please give a name")
         } else {
             setError("")
+            const userId = await generateUUID()
+            if (userId){
+                userData.userId = userId
+                mutate({ userData })
+            } 
+        }
+    }
 
-            try{
-                const response = await fetch(BACKEND_REGISTER, ({
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(userData)
-                }))
-    
-                if (response.ok){
-                    // ...
-                }
-            } catch (error){
-                console.log(error)
-            }
+    const handleLogin = async () => {
+        const data = await signIn('credentials', {
+            email: userData.login.email,
+            password: userData.login.password,
+            redirect: false
+        })
+
+        if (data?.ok){
+            router.push(LEARNER_DASHBOARD)
         }
     }
 
@@ -61,22 +85,44 @@ export default function LoginPage({ register }: { register?: boolean }){
                         </div>}
                         <div>
                             <p>Email</p>
-                            <input value={userData?.login.email} onChange={(e) => setUserData((prev: any) => ({ ...prev, login: ({...prev.login, email: e.target.value }) }))} placeholder="Email" className="w-full rounded-md outline-0 border border-stone-300 px-3 py-1.5 text-sm" />
+                            <input type="email" value={userData?.login.email} onChange={(e) => setUserData((prev: any) => ({ ...prev, login: ({...prev.login, email: e.target.value }) }))} placeholder="Email" className="w-full rounded-md outline-0 border border-stone-300 px-3 py-1.5 text-sm" />
                         </div>
                         <div>
                             <p>Password</p>
-                            <input value={userData?.login.password} onChange={(e) => setUserData((prev: any) => ({ ...prev, login: ({...prev.login, password: e.target.value }) }))} type="password" placeholder="Password" className="w-full rounded-md outline-0 border border-stone-300 px-3 py-1.5 text-sm" />
+                            <div className="relative">
+                                <input value={userData?.login.password} onChange={(e) => setUserData((prev: any) => ({ ...prev, login: ({...prev.login, password: e.target.value }) }))} type={showPassword.password ? "text" : "password"} placeholder="Password" className="w-full rounded-md outline-0 border border-stone-300 px-3 py-1.5 text-sm" />
+                                <div onClick={() => setShowPassword(prev => ({...prev, password: !prev.password}))} className="absolute top-0 translate-y-2 right-3 cursor-pointer">{showPassword.password ? <FaEye /> : <FaEyeSlash />}</div>
+                            </div>
                         </div>
                         {register && <div>
                             <p>Confirm Password</p>
-                            <input type="password" placeholder="Confirm Password" className="w-full rounded-md outline-0 border border-stone-300 px-3 py-1.5 text-sm" />
+                            <div className="relative">
+                                <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} type={showPassword.confirmPassword ? "text" : "password"} placeholder="Confirm Password" className="w-full rounded-md outline-0 border border-stone-300 px-3 py-1.5 text-sm" />
+                                <div onClick={() => setShowPassword(prev => ({...prev, confirmPassword: !prev.confirmPassword}))} className="absolute top-0 translate-y-2 right-3 cursor-pointer">{showPassword.confirmPassword ? <FaEye /> : <FaEyeSlash />}</div>
+                            </div>
                         </div>}
                         <p className="text-xs text-[#DB2726]">{error}</p>
                         <div className="flex items-start gap-1 text-xs">
                             <input type="checkbox" />
                             <p>Remember me</p>
                         </div>
-                        <Button text={`${register ? "Register" : "Sign in"}`} colour="white" />
+                        <div onClick={register ? handleRegister : handleLogin}>
+                            <Button 
+                                text= {
+                                    isPending ?
+                                        <ClipLoader
+                                        color={"#fff"}
+                                        loading={isPending}
+                                        size={20}
+                                        aria-label="Loading Spinner"
+                                        data-testid="loader"
+                                    />
+                                    :
+                                    `${register ? "Register" : "Sign in"}`
+                                } 
+                                colour="white" 
+                            />
+                        </div>
                     </div>
                     <div className="uppercase text-center text-xs text-gray-600">Or continue with</div>
                     <div>

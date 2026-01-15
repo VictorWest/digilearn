@@ -11,3 +11,12 @@ export function toYouTubeEmbed(url: string | null) {
 
   return `https://www.youtube.com/embed/${videoId}${start}`
 }
+
+export async function generateUUID(){
+  if (typeof crypto !== "undefined"){
+    return crypto.randomUUID()
+  } else {
+    console.error("crypto.randomUUID() is not supported in this environment.");
+    return null; 
+  }
+}
