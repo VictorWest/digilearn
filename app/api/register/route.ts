@@ -4,7 +4,7 @@ import { hashPassword } from "@/lib/server/password";
 import { NextRequest, NextResponse } from "next/server";
 import { handleApiError, validatePayload } from "./util";
 
-export default async function POST(req: NextRequest){
+export async function POST(req: NextRequest){
     try {
         const body = await req.json()
 
