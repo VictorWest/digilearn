@@ -28,15 +28,21 @@ export default function LoginPage({ register }: { register?: boolean }){
     const [ showPassword, setShowPassword ] = useState({ password: false, confirmPassword: false })
     const [ error, setError ] = useState("")
 
-    const { mutate, isPending, isError, error: mutateError } = useMutation({
+    const { mutate, isPending, isError, isSuccess } = useMutation({
         mutationFn: createUserRequest
     })
 
     useEffect(() => {
         if (isError){
-            setError(mutateError?.message || "There was an error, please try again.")
+            setError("There was an error, please try again.")
         }
     }, [isError])
+
+    useEffect(() => {
+        if (isSuccess){
+            router.push(LOGIN_PAGE_ROUTE)
+        }
+    }, [isSuccess])
 
     const handleRegister = async () => {
         if (!EMAIL_REGEX.test(userData?.login.email || "")){
@@ -66,6 +72,10 @@ export default function LoginPage({ register }: { register?: boolean }){
 
         if (data?.ok){
             router.push(LEARNER_DASHBOARD)
+        } else {
+            if (data?.status === 401){
+                setError("User not found")
+            }
         }
     }
 
