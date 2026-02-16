@@ -3,6 +3,7 @@ import CourseInfo from "@/components/course-info"
 import CourseSyllabus from "@/components/course-syllabus"
 import VideoPlayer from "@/components/video-player"
 import { useCourseContext } from "@/context/CourseContext"
+import { COURSE_CATALOG_ROUTE } from "@/lib/shared/constants"
 import { courseDetails } from "@/lib/utils/data"
 import { redirect } from "next/navigation"
 import { useEffect } from "react"
@@ -14,7 +15,7 @@ export default function CourseDetailPage({ id }: { id: string | number}){
         const data = courseDetails.find(item => item.courseId === id)
 
         if (!data){
-            redirect('/course-catalog')
+            redirect(COURSE_CATALOG_ROUTE)
         }
         setCourseData(data)
     }, [])

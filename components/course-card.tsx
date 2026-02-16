@@ -1,14 +1,26 @@
 import { COURSE_DETAIL_ROUTE, THEME_COLOUR } from "@/lib/shared/constants";
-import { Course } from "@/lib/utils/data";
 import Image from "next/image";
 import { PiChalkboardTeacherThin } from "react-icons/pi";
 import { CiStar } from "react-icons/ci";
 import Button from "./button";
 import Link from "next/link";
 import { IoIosAdd } from "react-icons/io";
+import { Course } from "@/lib/shared/interface";
+import { courseDetails } from "@/lib/utils/data";
+import { useEffect, useState } from "react";
 
 export default function CourseCard({ courseInfo, main }: { courseInfo: Course, main?: boolean }){
     const { imageUrl, title, tutor, price, rating, reviews, courseId } = courseInfo
+
+    const [ hasCourseDetails, setHasCourseDetails ] = useState<boolean>(false)
+
+    useEffect(() => {
+        const data = courseDetails.find(item => item.courseId === courseId)
+
+        if (data){
+            setHasCourseDetails(true)
+        }
+    }, [courseId])
 
     return (
         <div className="relative rounded-md shadow-xl border border-stone-300 h-90 cursor-pointer hover:scale-102">
@@ -30,7 +42,9 @@ export default function CourseCard({ courseInfo, main }: { courseInfo: Course, m
             </div>
             {main &&
                 <div className="w-full px-5 absolute bottom-5"> 
-                    <Link href={`${COURSE_DETAIL_ROUTE}/${courseId}`}><Button text="View Course" colour="white" /></Link>
+                    <Link href={`${COURSE_DETAIL_ROUTE}/${courseId}`}>
+                        <Button text={`${hasCourseDetails ? "View Course" : "Course Unavailable"}`} colour="white" />
+                    </Link>
                 </div>
             }
         </div>

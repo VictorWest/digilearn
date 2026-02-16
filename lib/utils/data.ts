@@ -177,17 +177,18 @@ export const featuredCoursesArray: Course[] = [
     level: "Intermediate",
     reviews: 5400
   },
-  {
-    courseId: "yt-startup-001",
-    imageUrl: "https://img.youtube.com/vi/CBYhVcO4WgI/maxresdefault.jpg",
-    price: 0,
-    title: "Startup Fundamentals",
-    tutor: "Y Combinator",
-    rating: 4.9,
-    category: "Business & Entrepreneurship",
-    level: "Beginner",
-    reviews: 13200
-  },
+  // {
+  //   courseId: "yt-startup-001",
+  //   // imageUrl: "https://img.youtube.com/vi/CBYhVcO4WgI/maxresdefault.jpg",
+  //   imageUrl: "https://media.licdn.com/dms/image/v2/C5612AQF6UIbTO7fDiw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1590939499079?e=2147483647&v=beta&t=qf7CKgrfi8AZlk4RTN22EDJdXjr4T7WxmvY9_8IC8Lk",
+  //   price: 0,
+  //   title: "Startup Fundamentals",
+  //   tutor: "Y Combinator",
+  //   rating: 4.9,
+  //   category: "Business & Entrepreneurship",
+  //   level: "Beginner",
+  //   reviews: 13200
+  // },
   {
     courseId: "yt-finance-001",
     imageUrl: "https://img.youtube.com/vi/wM5Y0kJZJ1A/maxresdefault.jpg",
