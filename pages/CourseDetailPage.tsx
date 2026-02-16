@@ -1,12 +1,12 @@
 "use client"
-import CourseInfo from "@/components/course-info"
-import CourseSyllabus from "@/components/course-syllabus"
-import VideoPlayer from "@/components/video-player"
-import { useCourseContext, CourseProvider } from "@/context/CourseContext"
-import { COURSE_CATALOG_ROUTE } from "@/lib/shared/constants"
-import { courseDetails } from "@/lib/utils/data"
-import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+// import CourseInfo from "@/components/course-info"
+// import CourseSyllabus from "@/components/course-syllabus"
+// import VideoPlayer from "@/components/video-player"
+// import { useCourseContext, CourseProvider } from "@/context/CourseContext"
+// import { COURSE_CATALOG_ROUTE } from "@/lib/shared/constants"
+// import { courseDetails } from "@/lib/utils/data"
+// import { useRouter } from "next/navigation"
+// import { useEffect } from "react"
 
 export default function CourseDetailPage({ id }: { id: string | number}){
     // const router = useRouter()
