@@ -246,6 +246,29 @@ export const featuredCoursesArray: Course[] = [
   }
 ]
 
+export const initialCourseDetail: CourseDetail = {
+  courseId: "",
+  title: "",
+  stat: {
+    rating: 0,
+    reviews: 0,
+    students: 0,
+    totalHours: 0,
+    numberOfLectures: 0
+  },
+  tutor: {
+    name: "",
+    details: "",
+    occupation: "",
+    profileSrc: ""
+  },
+  overview: {
+    main: "",
+    deliverables: []
+  },
+  syllabus: []
+}
+
 export const courseDetails: CourseDetail[] = [
   {
     courseId: "yt-react-001",

@@ -1,5 +1,6 @@
 "use client"
-import { Course, CourseDetail, featuredCoursesArray } from "@/lib/utils/data";
+import { Course, CourseDetail } from "@/lib/shared/interface";
+import { featuredCoursesArray, initialCourseDetail } from "@/lib/utils/data";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const CourseContext = createContext<any>(undefined)
@@ -10,7 +11,29 @@ export const CourseProvider = ({ children }: any) => {
     const [ selectedCategories, setSelectedCategories ] = useState<string[]>([])
     const [ selectedLevels, setSelectedLevels ] = useState<string[]>([])
     
-    const [ courseData, setCourseData ] = useState<CourseDetail>()
+    const [ courseData, setCourseData ] = useState<CourseDetail>({
+        courseId: "",
+        title: "",
+        stat: {
+            rating: 0,
+            reviews: 0,
+            students: 0,
+            totalHours: 0,
+            numberOfLectures: 0
+        },
+        tutor: {
+            name: "",
+            details: "",
+            occupation: "",
+            profileSrc: ""
+        },
+        overview: {
+            main: "",
+            deliverables: []
+        },
+        syllabus: []
+    })  
+    
     const [ currentModule, setCurrentModule ] = useState({ module: 0, lesson: 0 })
 
     useEffect(() => {

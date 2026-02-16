@@ -4,7 +4,6 @@ import { PiChalkboardTeacherThin } from "react-icons/pi";
 import { CiStar } from "react-icons/ci";
 import Button from "./button";
 import Link from "next/link";
-import { IoIosAdd } from "react-icons/io";
 import { Course } from "@/lib/shared/interface";
 import { courseDetails } from "@/lib/utils/data";
 import { useEffect, useState } from "react";

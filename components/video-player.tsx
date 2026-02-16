@@ -8,7 +8,7 @@ import Button from "./button";
 import { IoIosAdd } from "react-icons/io";
 import { CourseDetail } from "@/lib/shared/interface";
 
-export default function VideoPlayer({ courseData, currentModule }: { courseData: CourseDetail | undefined, currentModule: any }){
+export default function VideoPlayer({ courseData, currentModule }: { courseData: CourseDetail, currentModule: any }){
     return (
         <div className="w-180 space-y-5">
             <Suspense fallback={<p>Loading video...</p>}>

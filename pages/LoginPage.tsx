@@ -21,9 +21,9 @@ export default function LoginPage({ register }: { register?: boolean }){
 
     const [ userData, setUserData ] = useState<User>(
         { userId: "", 
-            fullName: "Victor West", 
-            login: { email: "mywondervic@gmail.com", password: "mywonderviC123$" } }) // for register
-    const [ confirmPassword, setConfirmPassword ] = useState("mywonderviC123$")
+            fullName: "", 
+            login: { email: "", password: "" } }) // for register
+    const [ confirmPassword, setConfirmPassword ] = useState("")
 
     const [ showPassword, setShowPassword ] = useState({ password: false, confirmPassword: false })
     const [ error, setError ] = useState("")

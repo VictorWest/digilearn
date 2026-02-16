@@ -2,8 +2,9 @@
 import { useEffect, useState } from "react";
 import Button from "./button";
 import Input from "./input";
-import { Course, featuredCoursesArray } from "@/lib/utils/data";
+import { featuredCoursesArray } from "@/lib/utils/data";
 import CourseCard from "./course-card";
+import { Course } from "@/lib/shared/interface";
 
 export default function FeaturedSection(){
     const [ featuredCourses, setFeaturedCourses ] = useState<Course[]>([])

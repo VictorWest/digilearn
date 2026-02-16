@@ -1,10 +1,9 @@
 import { THEME_COLOUR } from "@/lib/shared/constants";
-import { CourseDetail } from "@/lib/utils/data";
+import { CourseDetail } from "@/lib/shared/interface";
 import Image from "next/image";
 import { FaCheck } from "react-icons/fa";
-import StarRatings from "react-star-ratings"
 
-export default function CourseInfo({ courseData }: {courseData: CourseDetail | undefined }){
+export default function CourseInfo({ courseData }: {courseData: CourseDetail }){
     return (
         <div className="mt-5 space-y-5 *:space-y-3">
             <div>

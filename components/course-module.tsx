@@ -1,7 +1,7 @@
 "use client"
 import { useCourseContext } from "@/context/CourseContext";
 import { THEME_COLOUR } from "@/lib/shared/constants";
-import { CourseModule as ModuleType } from "@/lib/utils/data";
+import { CourseModule as ModuleType } from "@/lib/shared/interface";
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 
