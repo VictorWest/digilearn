@@ -12,6 +12,8 @@ export const createUserRequest = async ({ userData}: { userData: User }) => {
         body: JSON.stringify(userData)
     }))
 
+    // console.log(response)
+
     if (!response.ok){
         return {
             ok: false,

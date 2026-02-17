@@ -2,8 +2,9 @@
 import Link from "next/link";
 import Button from "./button";
 import { COURSE_CATALOG_ROUTE } from "@/lib/shared/constants";
+import { Session } from "next-auth";
 
-export default function Hero(){
+export default function Hero({session}:{session: Session | null}){
     return(
         <div style={{ backgroundImage: "url('/home/hero-image-1.jpg')", minHeight: "calc(100vh - 64px)" }} className="bg-cover bg-no-repeat bg-center flex justify-center items-center">
             <div className="text-center bg-black/10 space-y-3 py-10">
@@ -13,7 +14,7 @@ export default function Hero(){
                 </div>
                 <div className="w-full flex justify-center gap-5 mt-5">
                     <Link href={COURSE_CATALOG_ROUTE}><Button colour="white" text="Explore Courses" /></Link>
-                    <Button background="white" text="Sign Up for Free" />
+                    {!session && <Button background="white" text="Sign Up for Free" />}
                 </div>
             </div>
         </div>

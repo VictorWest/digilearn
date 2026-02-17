@@ -28,7 +28,7 @@ export default function LoginPage({ register }: { register?: boolean }){
     const [ showPassword, setShowPassword ] = useState({ password: false, confirmPassword: false })
     const [ error, setError ] = useState("")
 
-    const { mutate, isPending, isError, isSuccess } = useMutation({
+    const { mutate, isPending, isError, error: fnError, isSuccess } = useMutation({
         mutationFn: createUserRequest
     })
 
@@ -38,11 +38,11 @@ export default function LoginPage({ register }: { register?: boolean }){
         }
     }, [isError])
 
-    useEffect(() => {
-        if (isSuccess){
-            router.push(LOGIN_PAGE_ROUTE)
-        }
-    }, [isSuccess])
+    // useEffect(() => {
+    //     if (isSuccess){
+    //         router.push(LOGIN_PAGE_ROUTE)
+    //     }
+    // }, [isSuccess])
 
     const handleRegister = async () => {
         if (!EMAIL_REGEX.test(userData?.login.email || "")){
@@ -58,8 +58,13 @@ export default function LoginPage({ register }: { register?: boolean }){
             const userId = await generateUUID()
             if (userId){
                 userData.userId = userId
-                mutate({ userData })
-            } 
+                // const response =  mutate({ userData })
+                const response = await createUserRequest({ userData })
+                if (response.ok){
+                    router.push(LOGIN_PAGE_ROUTE)
+                }
+                setError(response.error?.message)
+            }
         }
     }
 
@@ -80,7 +85,7 @@ export default function LoginPage({ register }: { register?: boolean }){
     }
 
     return (
-        <div className={`flex items-center justify-center ${!register && "h-screen"}`}>
+        <div className={`flex items-center justify-center ${!register ? "h-screen" : ""}`}>
             <div className={`w-200 ${register ? "h-170" : "h-130"} overflow-y-visible border border-stone-200 shadow flex p-10`}>
                 <div className="w-1/2 space-y-5 *:space-y-3">
                     <div className="flex flex-col items-center">
